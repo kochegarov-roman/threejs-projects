@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   webpack: (config, options) => {
     config.module.rules.push({
       test: /\.(glsl|vs|fs|vert|glb|gltf|frag)$/,
@@ -8,7 +8,7 @@ const nextConfig = {
     });
 
     return config;
-  }
+  },
 };
 
 export default nextConfig;
