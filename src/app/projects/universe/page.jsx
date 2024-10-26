@@ -1,7 +1,7 @@
 'use client';
 import { useEffect } from 'react';
 import Scene from '../../../entities/universe';
-import { clearSceneData } from '@/lib/utils';
+import { clearSceneData } from '@/shared/utils/utils';
 
 export default function Universe() {
   useEffect(() => {

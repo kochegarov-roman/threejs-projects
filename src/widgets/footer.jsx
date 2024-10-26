@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn } from '@/shared/utils/utils';
 
 export const Footer = ({ variant = 'sticky' }) => {
   return (

@@ -1,7 +1,7 @@
 'use client';
 import { useEffect } from 'react';
 import Scene from '@/entities/spheres';
-import { clearSceneData } from '@/lib/utils';
+import { clearSceneData } from '@/shared/utils/utils';
 
 export default function Home() {
   useEffect(() => {
