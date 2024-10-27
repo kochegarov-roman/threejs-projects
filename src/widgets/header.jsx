@@ -14,11 +14,15 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/shared/ui/dropdown-menu';
-import { projectsInfo } from '@/shared/constants';
+import { projectsInfo, projectsInfoEntries } from '@/shared/constants';
+import { usePathname } from 'next/navigation';
 
 export function AppHeader({ variant }) {
+  const pathname = usePathname();
+  const lastPart = pathname.substring(pathname.lastIndexOf('/') + 1);
+
   return (
-    <div className="p-6 fixed z-10 m-auto flex justify-center w-[100vw] backdrop-blur">
+    <div className="p-6 absolute z-10 m-auto flex justify-center w-[100vw] backdrop-blur">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -33,16 +37,20 @@ export function AppHeader({ variant }) {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start">
                 {projectsInfo.map((project) => (
-                  <DropdownMenuItem key={'dd-' + project.name}>
-                    <Link href={project.href ?? '#'}>{project.name}</Link>
-                  </DropdownMenuItem>
+                  <Link href={project.href ?? '#'} key={'dd-' + project.name}>
+                    <DropdownMenuItem className="cursor-pointer">
+                      {project.name}
+                    </DropdownMenuItem>
+                  </Link>
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>Blocks</BreadcrumbPage>
+            <BreadcrumbPage>
+              {projectsInfoEntries[lastPart].name}
+            </BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>

@@ -30,9 +30,20 @@ export const Projects = () => {
             />
           </CardContent>
           <CardFooter className="flex justify-between absolute bottom-0 w-[100%]">
-            {!project.external && <Button variant="ghost">Code</Button>}
+            {!project.external && project.codeHref && (
+              <Button variant="ghost">
+                <Link href={project.codeHref ?? '#'} target="_blank">
+                  Code
+                </Link>
+              </Button>
+            )}
             <Button variant="outline">
-              <Link href={project.href ?? '#'}>Show</Link>
+              <Link
+                href={project.href ?? '#'}
+                target={project.isExternal ? '_blank' : '_self'}
+              >
+                Show
+              </Link>
             </Button>
           </CardFooter>
         </Card>

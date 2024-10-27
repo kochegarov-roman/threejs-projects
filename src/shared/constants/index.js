@@ -2,76 +2,80 @@ import DeviceUtils from '@/shared/utils/DeviceUtils';
 
 export const BASE_ASSETS_PATH = '/';
 
-export const projectsInfo = [
-  {
+export let projectsInfoEntries = {
+  universe: {
     name: 'Universe',
-    tags: ['particlesTube', 'cubeRenderTarget', 'noise'],
+    tags: ['particlesTube', 'cubeRenderTarget', 'raycaster', 'noise'],
     src: 'videos/universe.mp4',
     href: '/projects/universe',
+    codeHref:
+      'https://github.com/kochegarov-roman/threejs-projects/blob/main/src/entities/universe/index.js',
   },
-  {
+  tubes: {
     name: 'Tube & Sprites',
     tags: ['tube', 'sprites'],
     src: 'videos/tubes.mp4',
     href: '/projects/tubes',
+    codeHref:
+      'https://github.com/kochegarov-roman/threejs-projects/blob/main/src/entities/tubes/index.js',
   },
-  {
+  spheres: {
     name: 'Spheres',
-    tags: ['SphereBufferGeometry', 'cubeRenderTarget'],
+    tags: ['SphereGeometry', 'cubeRenderTarget'],
     src: 'videos/spheres.mp4',
     href: '/projects/spheres',
+    codeHref:
+      'https://github.com/kochegarov-roman/threejs-projects/blob/main/src/entities/spheres/index.js',
   },
-  {
+  blocks: {
     name: 'Circles from blocks',
     tags: ['matcap', 'circles', 'sin', 'cos', 'noise'],
     src: 'videos/blocks.mp4',
     href: '/projects/blocks',
+    codeHref:
+      'https://github.com/kochegarov-roman/threejs-projects/blob/main/src/entities/blocks/index.js',
   },
-  {
+  dna: {
     name: 'DNA',
-    tags: ['glb_load'],
+    tags: ['gltf', 'BloomPass', 'EffectComposer'],
     src: 'videos/dna.mp4',
     href: '/projects/dna',
+    codeHref:
+      'https://github.com/kochegarov-roman/threejs-projects/blob/main/src/entities/dna/index.js',
   },
-  {
+  cam_move: {
     name: 'Camera Movement',
-    tags: ['camera_movement'],
+    tags: ['CatmullRomCurve3'],
     src: 'videos/cam_move.mp4',
-    external: true,
+    isExternal: true,
     href: 'https://kochegarov.pro',
   },
-  {
+  images: {
     name: 'Floating images',
     tags: ['images', 'img_load'],
     src: 'videos/images.mp4',
-    external: true,
+    isExternal: true,
     href: 'https://kochegarov.pro/projects',
   },
-];
-
-if (!DeviceUtils.isMobile()) projectsInfo.push({
-  name: 'Several scenes',
-  tags: ['setRenderTarget', 'scene'],
-  src: 'videos/scenes.mp4',
-  href: '/projects/scenes',
-},)
-
-export const DEBUG = false;
-// events
-export const RAF = 'RAF';
-export const WINDOW_RESIZE = 'WINDOW_RESIZE';
-export const MOUSE_MOVE = 'MOUSE_MOVE';
-export const START_SCENE = 'START_SCENE';
-export const PAUSE_SCENE = 'PAUSE_SCENE';
-export const SCROLL = 'SCROLL';
-
-let colors = {
-  tree: 0x20202,
-  particles: 0xa5423,
-  lines: 0x557258,
-  lines2: 0x183a08,
-  lines3: 0x1a7d63,
-  lines4: 0x1a7d2b,
 };
 
-export const COLORS = colors;
+if (!DeviceUtils.isMobile()) {
+  projectsInfoEntries = {
+    ...projectsInfoEntries,
+    scenes: {
+      name: 'Several scenes',
+      tags: ['setRenderTarget', 'WheelGesture', 'lethargy'],
+      src: 'videos/scenes.mp4',
+      href: '/projects/scenes',
+      codeHref:
+        'https://github.com/kochegarov-roman/threejs-projects/blob/main/src/entities/scenes/index.js',
+    },
+  }
+}
+
+export const projectsInfo = Object.values(projectsInfoEntries);
+
+// events
+export const RAF = 'RAF';
+export const START_SCENE = 'START_SCENE';
+export const PAUSE_SCENE = 'PAUSE_SCENE';

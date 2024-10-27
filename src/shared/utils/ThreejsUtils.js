@@ -2,7 +2,7 @@ import * as THREE from 'three';
 
 export function clearScene(scene) {
   if (!scene || !(scene instanceof THREE.Scene)) {
-    console.error('Scene is not defined or not a THREE.Scene object.');
+    // console.error('Scene is not defined or not a THREE.Scene object.');
     return;
   }
 
