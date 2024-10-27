@@ -3,7 +3,6 @@ import { AppHeader } from '@/widgets/header';
 import { Footer } from '@/widgets/footer';
 import { RAFManager } from '@/shared/managers/RAFManager';
 import { useEffect } from 'react';
-import AbstractScene from '@/entities/AbstractScene';
 import { usePathname } from 'next/navigation';
 import { clearSceneData } from '@/shared/utils/utils';
 
@@ -31,7 +30,6 @@ export default function Layout({ children }) {
     return () => {
       raf.pause();
       if (instance) clearSceneData(instance);
-      AbstractScene.clearStats();
     };
   }, [lastPart]);
 

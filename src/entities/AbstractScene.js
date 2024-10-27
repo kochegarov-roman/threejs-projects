@@ -29,7 +29,7 @@ export default class AbstractScene {
     }
   }
 
-  static clearStats() {
+  clearStats() {
     const statsContainer = document.getElementById('stats-container');
     if (statsContainer) statsContainer.innerHTML = '';
   }

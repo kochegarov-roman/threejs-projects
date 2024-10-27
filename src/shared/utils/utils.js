@@ -11,9 +11,10 @@ export const clearSceneData = (instance) => {
   window.dispatchEvent(createCustomEvent(PAUSE_SCENE));
   instance.geometry?.dispose();
   instance.material?.dispose();
+  instance.clearStats();
   instance.clearListeners();
   clearScene(instance.scene);
-  // Object.keys(instance).forEach(key => delete instance[key]);
+  instance = null;
   const container = document.getElementById('threejs-app-container');
   if (container) container.innerHTML = '';
 };
