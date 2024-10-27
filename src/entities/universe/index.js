@@ -287,11 +287,14 @@ export default class Scene extends AbstractScene {
       this.addPointsObjects(op);
     });
 
-    this.addTube(3, 4, 3, 0.1);
-    this.addParticlesTube(2.5, 3, 7, 0.9, 1);
-
-    this.addTube(7, 2, 5, 0.1);
-    this.addParticlesTube(7, 2, 5, 1, 1.5);
+    if (!DeviceUtils.isMobile()) {
+      this.addTube(3, 4, 3, 0.1);
+      this.addParticlesTube(2.5, 3, 7, 0.9, 1);
+      this.addTube(7, 2, 5, 0.1);
+      this.addParticlesTube(7, 2, 5, 1, 1.5);
+    } else {
+      this.addTube(3, 2, 3, 0.1);
+    }
   }
 
   onPointerMove(event) {

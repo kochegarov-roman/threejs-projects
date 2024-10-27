@@ -1,3 +1,5 @@
+import DeviceUtils from '@/shared/utils/DeviceUtils';
+
 export const universeOptions = [
   {
     min_radius: 2,
@@ -7,7 +9,7 @@ export const universeOptions = [
     amp: 25,
     velocity: 1,
     y_offset: 0,
-    count: 15000,
+    count: DeviceUtils.isMobile() ? 1500 : 15000,
     x_offset: 0,
   },
   {
@@ -18,7 +20,7 @@ export const universeOptions = [
     amp: 3,
     velocity: 1,
     y_offset: 2,
-    count: 5000,
+    count: DeviceUtils.isMobile() ? 500 : 5000,
     x_offset: 0,
   },
   {
@@ -29,7 +31,7 @@ export const universeOptions = [
     amp: 3,
     velocity: 1,
     y_offset: 0,
-    count: 5000,
+    count: DeviceUtils.isMobile() ? 500 : 5000,
     x_offset: 0,
   },
   {
@@ -40,7 +42,7 @@ export const universeOptions = [
     amp: 4,
     velocity: 5,
     y_offset: 0,
-    count: 20000,
+    count: DeviceUtils.isMobile() ? 2000 : 20000,
     x_offset: 0,
   },
   {
@@ -51,7 +53,7 @@ export const universeOptions = [
     amp: 2,
     velocity: 1,
     y_offset: -0.5,
-    count: 5000,
+    count: DeviceUtils.isMobile() ? 500 : 5000,
     x_offset: 0,
   },
   {
@@ -62,7 +64,7 @@ export const universeOptions = [
     amp: 0.5,
     velocity: 1,
     y_offset: 0,
-    count: 5000,
+    count: DeviceUtils.isMobile() ? 500 : 5000,
     x_offset: 0,
   },
   {
@@ -73,7 +75,7 @@ export const universeOptions = [
     amp: 7,
     velocity: 1,
     y_offset: 0,
-    count: 10000,
+    count: DeviceUtils.isMobile() ? 1000 : 10000,
     x_offset: 0,
   },
   {
@@ -84,7 +86,7 @@ export const universeOptions = [
     amp: 5,
     velocity: 1,
     y_offset: 0,
-    count: 5000,
+    count: DeviceUtils.isMobile() ? 500 : 5000,
     x_offset: 0,
   },
 ];
