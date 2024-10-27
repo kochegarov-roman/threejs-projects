@@ -1,18 +1,36 @@
+type EventCallback = (event: Event) => void;
+
+interface Listener {
+  target: EventTarget;
+  event: string;
+  callback: EventCallback;
+  options?: boolean | AddEventListenerOptions;
+}
+
 export class EventManager {
+  private listeners: Record<string, Listener[]>;
+
   constructor() {
     this.listeners = {};
   }
 
-  addListener(key, target, event, callback, options) {
+  addListener(
+    key: string,
+    target: EventTarget,
+    event: string,
+    callback: EventCallback,
+    options?: boolean | AddEventListenerOptions,
+  ): void {
     if (!this.listeners[key]) {
       this.listeners[key] = [];
     }
-    const listener = { target, event, callback, options };
+
+    const listener: Listener = { target, event, callback, options };
     this.listeners[key].push(listener);
     target.addEventListener(event, callback, options);
   }
 
-  removeListenersByKey(key) {
+  removeListenersByKey(key: string): void {
     if (!this.listeners[key]) return;
 
     this.listeners[key].forEach(({ target, event, callback, options }) => {
@@ -22,7 +40,7 @@ export class EventManager {
     delete this.listeners[key];
   }
 
-  clearAllListeners() {
+  clearAllListeners(): void {
     Object.keys(this.listeners).forEach((key) => {
       this.removeListenersByKey(key);
     });

@@ -2,7 +2,18 @@ import DeviceUtils from '@/shared/utils/DeviceUtils';
 
 export const BASE_ASSETS_PATH = '/';
 
-export let projectsInfoEntries = {
+interface IProjectsInfoEntries {
+  [key: string]: {
+    name: string;
+    tags: string[];
+    src: string;
+    href: string;
+    isExternal?: boolean;
+    codeHref?: string;
+  };
+}
+
+export let projectsInfoEntries: IProjectsInfoEntries = {
   universe: {
     name: 'Universe',
     tags: ['particlesTube', 'cubeRenderTarget', 'raycaster', 'noise'],
@@ -70,7 +81,7 @@ if (!DeviceUtils.isMobile()) {
       codeHref:
         'https://github.com/kochegarov-roman/threejs-projects/blob/main/src/entities/scenes/index.js',
     },
-  }
+  };
 }
 
 export const projectsInfo = Object.values(projectsInfoEntries);

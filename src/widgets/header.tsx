@@ -1,8 +1,6 @@
 import {
   Breadcrumb,
-  BreadcrumbEllipsis,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
@@ -16,13 +14,19 @@ import {
 } from '@/shared/ui/dropdown-menu';
 import { projectsInfo, projectsInfoEntries } from '@/shared/constants';
 import { usePathname } from 'next/navigation';
+import { cn } from '@/shared/utils/utils';
 
-export function AppHeader({ variant }) {
+export function AppHeader({ variant }: { variant?: string }) {
   const pathname = usePathname();
   const lastPart = pathname.substring(pathname.lastIndexOf('/') + 1);
 
   return (
-    <div className="p-6 absolute z-10 m-auto flex justify-center w-[100vw] backdrop-blur">
+    <div
+      className={cn(
+        'p-6 absolute z-10 m-auto flex justify-center w-[100vw] backdrop-blur',
+        variant,
+      )}
+    >
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>

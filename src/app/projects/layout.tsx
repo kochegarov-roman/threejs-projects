@@ -2,7 +2,7 @@
 import { AppHeader } from '@/widgets/header';
 import { Footer } from '@/widgets/footer';
 import { RAFManager } from '@/shared/managers/RAFManager';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { clearSceneData } from '@/shared/utils/utils';
 
@@ -14,7 +14,7 @@ const loadClass = async (className) => {
   }
 };
 
-export default function Layout({ children }) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const lastPart = pathname.substring(pathname.lastIndexOf('/') + 1);
 

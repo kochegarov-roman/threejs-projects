@@ -1,6 +1,6 @@
 import { cn } from '@/shared/utils/utils';
 
-export const Footer = ({ variant = 'sticky' }) => {
+export const Footer = ({ variant = 'sticky' }: { variant?: string }) => {
   return (
     <div className="mt-8">
       <footer

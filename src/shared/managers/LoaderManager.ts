@@ -1,23 +1,44 @@
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
-import { TextureLoader } from 'three';
+import { TextureLoader, Texture } from 'three';
+
+interface LoadObject {
+  name: string;
+  fbx?: string;
+  gltf?: string;
+  texture?: string;
+  img?: string;
+}
+
+interface Subjects {
+  [key: string]: {
+    fbx?: any;
+    gltf?: any;
+    texture?: Texture;
+    img?: HTMLImageElement;
+  };
+}
 
 class LoadManager {
+  private subjects: Subjects;
+  private textureLoader: TextureLoader;
+  private FBXLoader: FBXLoader;
+  private GLTFLoader: GLTFLoader;
+  private DRACOLoader: DRACOLoader;
+
   constructor() {
     this.subjects = {};
-
     this.textureLoader = new TextureLoader();
     this.FBXLoader = new FBXLoader();
     this.GLTFLoader = new GLTFLoader();
     this.DRACOLoader = new DRACOLoader();
   }
 
-  load = (objects, callback) => {
-    const promises = [];
-    for (let i = 0; i < objects.length; i++) {
-      const { name, fbx, gltf, texture, img } = objects[i];
+  load(objects: LoadObject[], callback: () => void): void {
+    const promises: Promise<any>[] = [];
 
+    for (const { name, fbx, gltf, texture, img } of objects) {
       this.subjects[name] = {};
 
       if (fbx) {
@@ -38,9 +59,9 @@ class LoadManager {
     }
 
     Promise.all(promises).then(callback);
-  };
+  }
 
-  loadFBX(url, name) {
+  private loadFBX(url: string, name: string): Promise<any> {
     return new Promise((resolve) => {
       this.FBXLoader.load(
         url,
@@ -50,17 +71,15 @@ class LoadManager {
         },
         undefined,
         (e) => {
-          console.log(e);
+          console.error(e);
         },
       );
     });
   }
 
-  loadGLTF(url, name) {
+  private loadGLTF(url: string, name: string): Promise<any> {
     return new Promise((resolve) => {
-      this.DRACOLoader.setDecoderPath(
-        'https://www.gstatic.com/draco/v1/decoders/',
-      );
+      this.DRACOLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
       this.GLTFLoader.setDRACOLoader(this.DRACOLoader);
 
       this.GLTFLoader.load(
@@ -71,22 +90,22 @@ class LoadManager {
         },
         undefined,
         (e) => {
-          console.log(e);
+          console.error(e);
         },
       );
     });
   }
 
-  loadTexture(url, name) {
+  private loadTexture(url: string, name: string): Promise<Texture> {
     return new Promise((resolve) => {
-      this.textureLoader.load(url, (result) => {
+      this.textureLoader.load(url, (result: Texture) => {
         this.subjects[name].texture = result;
         resolve(result);
       });
     });
   }
 
-  loadImage(url, name) {
+  private loadImage(url: string, name: string): Promise<HTMLImageElement> {
     return new Promise((resolve) => {
       const image = new Image();
 

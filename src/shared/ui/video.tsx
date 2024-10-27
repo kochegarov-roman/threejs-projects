@@ -1,8 +1,17 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { PlayIcon } from '@/shared/ui/play';
 import { PauseIcon } from '@/shared/ui/pause';
+import { PlayIcon } from '@/shared/ui/play';
+
+interface IVideo {
+  src: string;
+  poster?: string;
+  width: string;
+  height: string;
+  loop: boolean;
+  autoplay: boolean;
+}
 
 const Video = ({
   src,
@@ -11,7 +20,7 @@ const Video = ({
   height = 'auto',
   loop,
   autoplay,
-}) => {
+}: IVideo) => {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(autoplay);
 
