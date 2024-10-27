@@ -58,6 +58,7 @@ export default class DNAScene extends AbstractScene {
       1000,
     );
     this.camera.position.set(-1, -1, 3.5);
+    this.camera.rotation.set(0.3, -0.3, 0.08);
   }
 
   onWheel(e) {

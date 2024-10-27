@@ -8,6 +8,7 @@ import AbstractScene from '@/entities/AbstractScene';
 import { LoaderManager } from '@/shared/managers/LoaderManager';
 import { createCustomEvent } from '@/shared/utils/ThreejsUtils';
 import { BASE_ASSETS_PATH, RAF, START_SCENE } from '@/shared/constants';
+import DeviceUtils from '@/shared/utils/DeviceUtils';
 
 export default class Scene extends AbstractScene {
   constructor(options) {
@@ -35,7 +36,14 @@ export default class Scene extends AbstractScene {
       0.001,
       1000,
     );
-    this.camera.position.set(5, -3, -2);
+
+    if (DeviceUtils.isMobile()) {
+      this.camera.position.set(1.7, -3, -0.3);
+      this.camera.rotation.set(1.66, 0.52, -1.7);
+    } else {
+      this.camera.position.set(0, -19, 4.5);
+      this.camera.rotation.set(1.3, 0, 0);
+    }
   }
 
   init() {

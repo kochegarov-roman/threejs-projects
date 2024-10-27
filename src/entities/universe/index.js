@@ -14,6 +14,7 @@ import { createCustomEvent, llerp } from '@/shared/utils/ThreejsUtils';
 import AbstractScene from '@/entities/AbstractScene';
 import { LoaderManager } from '@/shared/managers/LoaderManager';
 import { BASE_ASSETS_PATH, RAF, START_SCENE } from '@/shared/constants';
+import DeviceUtils from '@/shared/utils/DeviceUtils';
 
 export default class Scene extends AbstractScene {
   constructor(options) {
@@ -52,7 +53,7 @@ export default class Scene extends AbstractScene {
     super.buildControls();
     this.addAllObjects();
     this.initPost();
-    this.initRaycaster();
+    if (!DeviceUtils.isMobile()) this.initRaycaster();
 
     // start RAF
     window.dispatchEvent(createCustomEvent(START_SCENE));
@@ -86,6 +87,7 @@ export default class Scene extends AbstractScene {
     let aspect = window.innerWidth / window.innerHeight;
     this.camera = new THREE.PerspectiveCamera(70, aspect, 0.001, 1000);
     this.camera.position.set(0, 8, 4);
+    this.camera.rotation.set(-1.1, 0, 0);
   }
 
   initPost() {
@@ -293,6 +295,7 @@ export default class Scene extends AbstractScene {
   }
 
   onPointerMove(event) {
+    if (DeviceUtils.isMobile()) return;
     this.pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
     this.pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
 

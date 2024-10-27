@@ -60,6 +60,7 @@ export default class BlocksScene extends AbstractScene {
   buildCamera() {
     super.buildCamera();
     this.camera.position.set(-150, 150, 0);
+    this.camera.rotation.set(-1.5, -0.8, -1.5);
   }
 
   getRandomArbitrary(min, max) {

@@ -1,3 +1,5 @@
+import DeviceUtils from '@/shared/utils/DeviceUtils';
+
 export const BASE_ASSETS_PATH = '/';
 
 export const projectsInfo = [
@@ -32,12 +34,6 @@ export const projectsInfo = [
     href: '/projects/dna',
   },
   {
-    name: 'Several scenes',
-    tags: ['setRenderTarget', 'scene'],
-    src: 'videos/scenes.mp4',
-    href: '/projects/scenes',
-  },
-  {
     name: 'Camera Movement',
     tags: ['camera_movement'],
     src: 'videos/cam_move.mp4',
@@ -52,6 +48,13 @@ export const projectsInfo = [
     href: 'https://kochegarov.pro/projects',
   },
 ];
+
+if (!DeviceUtils.isMobile()) projectsInfo.push({
+  name: 'Several scenes',
+  tags: ['setRenderTarget', 'scene'],
+  src: 'videos/scenes.mp4',
+  href: '/projects/scenes',
+},)
 
 export const DEBUG = false;
 // events
