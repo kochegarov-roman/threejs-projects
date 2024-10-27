@@ -8,6 +8,8 @@ To display statistics, use the query parameter - ?stats=1
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+**node/20.18.0**
+
 ### Learn More
 
 To learn more about Next.js, take a look at the following resources:
