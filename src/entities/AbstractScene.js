@@ -1,11 +1,14 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import Stats from 'stats-js';
+import Stats from 'three/examples/jsm/libs/stats.module.js';
+import DeviceUtils from '@/shared/utils/DeviceUtils';
+import { EventManager } from '@/shared/managers/EventManager';
 
 export default class AbstractScene {
   constructor(options) {
     this.options = options;
     this.canvas = options.container;
+    this.eventManager = new EventManager();
     this.setUnits();
   }
 
@@ -17,13 +20,29 @@ export default class AbstractScene {
 
   buildStats() {
     this.stats = new Stats();
-    this.stats.showPanel(0);
-    document.body.appendChild(this.stats.dom);
+    const searchParams = new URLSearchParams(window.location.search);
+    const queryValue = searchParams.get('stats');
+    if (queryValue) {
+      const statsContainer = document.getElementById('stats-container');
+      this.stats.showPanel(0);
+      statsContainer.appendChild(this.stats.dom);
+    }
+  }
+
+  static clearStats() {
+    const statsContainer = document.getElementById('stats-container');
+    if (statsContainer) statsContainer.innerHTML = '';
   }
 
   buildControls() {
-    this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-    this.controls.listenToKeyEvents(window); // optional
+    if (!DeviceUtils.isMobile()) {
+      this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+      this.controls.listenToKeyEvents(window); // optional
+    }
+  }
+
+  clearListeners() {
+    this.eventManager.clearAllListeners();
   }
 
   buildRender() {
@@ -49,8 +68,8 @@ export default class AbstractScene {
   }
 
   setUnits() {
-    this.width = this.canvas.parentNode.offsetWidth;
-    this.height = this.canvas.parentNode.offsetHeight;
+    this.width = this.canvas.offsetWidth;
+    this.height = this.canvas.offsetHeight;
     this.windowHalf = new THREE.Vector2(
       window.innerWidth / 2,
       window.innerHeight / 2,

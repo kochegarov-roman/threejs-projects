@@ -5,14 +5,10 @@ export default function Home() {
   return (
     <div className="min-h-screen p-2 pb-20 gap-16 sm:p-20">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <h1>Three.js Projects</h1>
-        <div className="gap-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          <Projects />
-        </div>
+        <h1 className="mt-8">Three.js Projects</h1>
+        <Projects />
       </main>
-      <div className="mt-8">
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 }

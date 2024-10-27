@@ -1,11 +1,11 @@
 import './globals.css';
 
-import { Roboto } from 'next/font/google'
+import { Roboto } from 'next/font/google';
 
 const roboto = Roboto({
   weight: '400',
   subsets: ['latin'],
-})
+});
 
 export const metadata = {
   title: 'Three.js projects',
@@ -14,12 +14,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-  <html lang="en">
-    <body
-      className={`${roboto.className}  antialiased dark`}
-      >
+    <html lang="en">
+      <body className={`${roboto.className}  antialiased dark`}>
         {children}
-    </body>
+      </body>
     </html>
   );
 }

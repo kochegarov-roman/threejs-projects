@@ -6,7 +6,7 @@ import fragmentTube from './fragmentTube.glsl';
 import vertexTube from './vertexTube.glsl';
 import AbstractScene from '@/entities/AbstractScene';
 import { LoaderManager } from '@/shared/managers/LoaderManager';
-import { createCustomEvent } from '@/shared/utils/threejs-utils';
+import { createCustomEvent } from '@/shared/utils/ThreejsUtils';
 import { BASE_ASSETS_PATH, RAF, START_SCENE } from '@/shared/constants';
 
 export default class Scene extends AbstractScene {
@@ -53,8 +53,15 @@ export default class Scene extends AbstractScene {
   }
 
   events() {
-    window.addEventListener('resize', super.onWindowResize.bind(this));
-    window.addEventListener(RAF, this.render, { passive: true });
+    const resizeCallback = (e) => super.onWindowResize(e);
+
+    this.eventManager.addListener(
+      'windowEvents',
+      window,
+      'resize',
+      resizeCallback,
+    );
+    this.eventManager.addListener('windowEvents', window, RAF, this.render);
   }
 
   addObjects() {

@@ -2,23 +2,16 @@ export const BASE_ASSETS_PATH = '/';
 
 export const projectsInfo = [
   {
+    name: 'Universe',
+    tags: ['particlesTube', 'cubeRenderTarget', 'noise'],
+    src: 'videos/universe.mp4',
+    href: '/projects/universe',
+  },
+  {
     name: 'Tube & Sprites',
     tags: ['tube', 'sprites'],
     src: 'videos/tubes.mp4',
     href: '/projects/tubes',
-  },
-  {
-    name: 'Camera Movement',
-    tags: ['camera_movement'],
-    src: 'videos/cam_move.mp4',
-    external: true,
-    href: 'https://kochegarov.pro',
-  },
-  {
-    name: 'Circles from blocks',
-    tags: ['matcap', 'circles', 'sin', 'cos', 'noise'],
-    src: 'videos/blocks.mp4',
-    href: '/projects/blocks',
   },
   {
     name: 'Spheres',
@@ -27,10 +20,16 @@ export const projectsInfo = [
     href: '/projects/spheres',
   },
   {
-    name: 'Universe',
-    tags: ['particlesTube', 'cubeRenderTarget', 'noise'],
-    src: 'videos/universe.mp4',
-    href: '/projects/universe',
+    name: 'Circles from blocks',
+    tags: ['matcap', 'circles', 'sin', 'cos', 'noise'],
+    src: 'videos/blocks.mp4',
+    href: '/projects/blocks',
+  },
+  {
+    name: 'DNA',
+    tags: ['glb_load'],
+    src: 'videos/dna.mp4',
+    href: '/projects/dna',
   },
   {
     name: 'Several scenes',
@@ -39,10 +38,11 @@ export const projectsInfo = [
     href: '/projects/scenes',
   },
   {
-    name: 'DNA',
-    tags: ['glb_load'],
-    src: 'videos/dna.mp4',
-    href: '/projects/dna',
+    name: 'Camera Movement',
+    tags: ['camera_movement'],
+    src: 'videos/cam_move.mp4',
+    external: true,
+    href: 'https://kochegarov.pro',
   },
   {
     name: 'Floating images',

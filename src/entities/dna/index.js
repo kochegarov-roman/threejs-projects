@@ -8,7 +8,7 @@ import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPa
 
 import { AberrationShader } from './customPass';
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass';
-import { createCustomEvent } from '@/shared/utils/threejs-utils';
+import { createCustomEvent } from '@/shared/utils/ThreejsUtils';
 import { BASE_ASSETS_PATH, RAF, START_SCENE } from '@/shared/constants';
 import { LoaderManager } from '@/shared/managers/LoaderManager';
 import AbstractScene from '@/entities/AbstractScene';
@@ -60,11 +60,30 @@ export default class DNAScene extends AbstractScene {
     this.camera.position.set(-1, -1, 3.5);
   }
 
+  onWheel(e) {
+    this.speed += e.deltaY * 0.0002;
+  }
+
   events() {
-    window.addEventListener('resize', this.onWindowResize.bind(this));
-    window.addEventListener(RAF, this.render, { passive: true });
-    window.addEventListener('wheel', (e) => {
-      this.speed += e.deltaY * 0.0002;
+    const resizeCallback = (e) => super.onWindowResize(e);
+    const wheelCallback = (e) => this.onWheel(e);
+
+    this.eventManager.addListener(
+      'windowEvents',
+      window,
+      'resize',
+      resizeCallback,
+      { passive: true },
+    );
+    this.eventManager.addListener(
+      'windowEvents',
+      window,
+      'wheel',
+      wheelCallback,
+      { passive: true },
+    );
+    this.eventManager.addListener('windowEvents', window, RAF, this.render, {
+      passive: true,
     });
   }
 

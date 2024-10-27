@@ -1,5 +1,5 @@
 'use client';
-import { createCustomEvent } from '@/shared/utils/threejs-utils';
+import { createCustomEvent } from '@/shared/utils/ThreejsUtils';
 import { PAUSE_SCENE, RAF, START_SCENE } from '@/shared/constants';
 
 export class RAFManager {
@@ -20,5 +20,7 @@ export class RAFManager {
 
   pause = () => {
     window.cancelAnimationFrame(this.raf);
+    window.removeEventListener(START_SCENE, this.start);
+    window.removeEventListener(PAUSE_SCENE, this.pause);
   };
 }

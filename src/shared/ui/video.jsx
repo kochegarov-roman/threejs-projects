@@ -39,6 +39,7 @@ const Video = ({
         poster={poster}
         loop={loop}
         autoPlay={autoplay}
+        playsInline={true}
         muted={true}
         onClick={handlePlayPause}
         style={{ cursor: 'pointer' }}

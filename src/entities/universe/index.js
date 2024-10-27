@@ -10,7 +10,7 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { universeOptions } from '@/entities/universe/options';
-import { createCustomEvent, llerp } from '@/shared/utils/threejs-utils';
+import { createCustomEvent, llerp } from '@/shared/utils/ThreejsUtils';
 import AbstractScene from '@/entities/AbstractScene';
 import { LoaderManager } from '@/shared/managers/LoaderManager';
 import { BASE_ASSETS_PATH, RAF, START_SCENE } from '@/shared/constants';
@@ -52,7 +52,7 @@ export default class Scene extends AbstractScene {
     super.buildControls();
     this.addAllObjects();
     this.initPost();
-    this.initRaycasterEvents();
+    this.initRaycaster();
 
     // start RAF
     window.dispatchEvent(createCustomEvent(START_SCENE));
@@ -60,8 +60,26 @@ export default class Scene extends AbstractScene {
   }
 
   events() {
-    window.addEventListener('resize', super.onWindowResize.bind(this));
-    window.addEventListener(RAF, this.render, { passive: true });
+    const resizeCallback = (e) => super.onWindowResize(e);
+    const pointermoveCallback = (e) => this.onPointerMove(e);
+
+    this.eventManager.addListener(
+      'windowEvents',
+      window,
+      'resize',
+      resizeCallback,
+      { passive: true },
+    );
+    this.eventManager.addListener('windowEvents', window, RAF, this.render, {
+      passive: true,
+    });
+    this.eventManager.addListener(
+      'windowEvents',
+      window,
+      'pointermove',
+      pointermoveCallback,
+      { passive: true },
+    );
   }
 
   buildCamera() {
@@ -274,28 +292,22 @@ export default class Scene extends AbstractScene {
     this.addParticlesTube(7, 2, 5, 1, 1.5);
   }
 
-  initRaycasterEvents() {
-    let mesh = new THREE.Mesh(
+  onPointerMove(event) {
+    this.pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+    this.pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+    this.raycaster.setFromCamera(this.pointer, this.camera);
+    const intersects = this.raycaster.intersectObjects([this.meshForRaycaster]);
+    if (intersects[0]) {
+      this.point.copy(intersects[0].point);
+    }
+  }
+
+  initRaycaster() {
+    this.meshForRaycaster = new THREE.Mesh(
       new THREE.PlaneGeometry(100, 100, 100, 100).rotateX(-Math.PI / 2),
       new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true }),
     );
-
-    let test = new THREE.Mesh(
-      new THREE.SphereGeometry(10, 100, 100),
-      new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true }),
-    );
-
-    window.addEventListener('pointermove', (event) => {
-      this.pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
-      this.pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-      this.raycaster.setFromCamera(this.pointer, this.camera);
-      const intersects = this.raycaster.intersectObjects([mesh]);
-      if (intersects[0]) {
-        test.position.copy(intersects[0].point);
-        this.point.copy(intersects[0].point);
-      }
-    });
   }
 
   // RAF

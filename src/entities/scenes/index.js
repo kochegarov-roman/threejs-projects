@@ -7,7 +7,7 @@ import { WheelGesture } from '@use-gesture/vanilla';
 import AbstractScene from '@/entities/AbstractScene';
 import { RAF, START_SCENE } from '@/shared/constants';
 import { LoaderManager } from '@/shared/managers/LoaderManager';
-import { createCustomEvent } from '@/shared/utils/threejs-utils';
+import { createCustomEvent } from '@/shared/utils/ThreejsUtils';
 
 const sec1 = '/scenes/sec1.png';
 const sec2 = '/scenes/sec2.png';
@@ -145,9 +145,26 @@ export default class Scenes extends AbstractScene {
   }
 
   events() {
-    window.addEventListener('resize', super.onWindowResize.bind(this));
-    window.addEventListener(RAF, this.render, { passive: true });
-    document.addEventListener('mousemove', this.onMouseMove.bind(this), false);
+    const resizeCallback = (e) => super.onWindowResize(e);
+    const mousemoveCallback = (e) => this.onMouseMove(e);
+
+    this.eventManager.addListener(
+      'windowEvents',
+      window,
+      'resize',
+      resizeCallback,
+      { passive: true },
+    );
+    this.eventManager.addListener(
+      'windowEvents',
+      window,
+      'mousemove',
+      mousemoveCallback,
+      { passive: true },
+    );
+    this.eventManager.addListener('windowEvents', window, RAF, this.render, {
+      passive: true,
+    });
   }
 
   initPost() {

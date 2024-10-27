@@ -10,7 +10,7 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js';
 import AbstractScene from '@/entities/AbstractScene';
 import { RAF, START_SCENE } from '@/shared/constants';
-import { createCustomEvent } from '@/shared/utils/threejs-utils';
+import { createCustomEvent } from '@/shared/utils/ThreejsUtils';
 
 export default class SpheresScene extends AbstractScene {
   constructor(options) {
@@ -30,14 +30,24 @@ export default class SpheresScene extends AbstractScene {
     this.addObjects();
     this.initPost();
 
+    this.events();
     // start RAF
     window.dispatchEvent(createCustomEvent(START_SCENE));
-    this.events();
   }
 
   events() {
-    window.addEventListener('resize', super.onWindowResize.bind(this));
-    window.addEventListener(RAF, this.render, { passive: true });
+    const resizeCallback = (e) => super.onWindowResize(e);
+
+    this.eventManager.addListener(
+      'windowEvents',
+      window,
+      'resize',
+      resizeCallback,
+      { passive: true },
+    );
+    this.eventManager.addListener('windowEvents', window, RAF, this.render, {
+      passive: true,
+    });
   }
 
   buildCamera() {

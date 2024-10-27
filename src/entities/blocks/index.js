@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import fragment from './fragment.glsl';
 import vertex from './vertex.glsl';
-import { createCustomEvent } from '@/shared/utils/threejs-utils';
+import { createCustomEvent } from '@/shared/utils/ThreejsUtils';
 import { BASE_ASSETS_PATH, RAF, START_SCENE } from '@/shared/constants';
 import { LoaderManager } from '@/shared/managers/LoaderManager';
 import AbstractScene from '@/entities/AbstractScene';
@@ -44,8 +44,17 @@ export default class BlocksScene extends AbstractScene {
   }
 
   events() {
-    window.addEventListener('resize', this.onWindowResize.bind(this));
-    window.addEventListener(RAF, this.render, { passive: true });
+    const resizeCallback = (e) => this.onWindowResize(e);
+    this.eventManager.addListener(
+      'windowEvents',
+      window,
+      'resize',
+      resizeCallback,
+      { passive: true },
+    );
+    this.eventManager.addListener('windowEvents', window, RAF, this.render, {
+      passive: true,
+    });
   }
 
   buildCamera() {
