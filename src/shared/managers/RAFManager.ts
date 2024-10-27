@@ -21,7 +21,7 @@ export class RAFManager {
     this.handleRAF(0);
   };
 
-  private pause = (): void => {
+  pause = (): void => {
     if (this.raf !== undefined) {
       window.cancelAnimationFrame(this.raf);
     }

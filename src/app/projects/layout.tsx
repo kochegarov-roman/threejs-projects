@@ -1,43 +1,17 @@
 'use client';
 import { AppHeader } from '@/widgets/header';
 import { Footer } from '@/widgets/footer';
-import { RAFManager } from '@/shared/managers/RAFManager';
-import React, { useEffect } from 'react';
-import { usePathname } from 'next/navigation';
-import { clearSceneData } from '@/shared/utils/utils';
-
-const loadClass = async (className) => {
-  try {
-    return await import(`@/entities/${className}`);
-  } catch (error) {
-    console.error('Error loading class:', error);
-  }
-};
+import React, { Suspense } from 'react';
+import { FullPageSpinner } from '@/shared/ui/full-page-spinner';
+import ThreeJSContent from '@/widgets/threejs-container';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
-  const lastPart = pathname.substring(pathname.lastIndexOf('/') + 1);
-
-  useEffect(() => {
-    const raf = new RAFManager();
-    let instance;
-    loadClass(lastPart).then((SceneClass) => {
-      instance = new SceneClass.default({
-        container: document.getElementById('threejs-app-container'),
-      });
-    });
-
-    return () => {
-      raf.pause();
-      if (instance) clearSceneData(instance);
-    };
-  }, [lastPart]);
-
   return (
     <>
       <AppHeader />
-      <div id="stats-container"></div>
-      <div id="threejs-app-container" style={{ height: '100vh' }}></div>
+      <Suspense fallback={<FullPageSpinner />}>
+        <ThreeJSContent />
+      </Suspense>
       {children}
       <Footer variant={'fixed'} />
     </>
