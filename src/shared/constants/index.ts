@@ -13,11 +13,13 @@ interface IProjectsInfoEntries {
   };
 }
 
+const VIDEO_ASSETS_PATH = BASE_ASSETS_PATH.slice(1);
+
 export let projectsInfoEntries: IProjectsInfoEntries = {
   universe: {
     name: 'Universe',
     tags: ['particlesTube', 'cubeRenderTarget', 'raycaster', 'noise'],
-    src: 'videos/universe.mp4',
+    src: VIDEO_ASSETS_PATH+'videos/universe.mp4',
     href: '/projects/universe',
     codeHref:
       'https://github.com/kochegarov-roman/threejs-projects/blob/main/src/entities/universe/index.js',
@@ -25,7 +27,7 @@ export let projectsInfoEntries: IProjectsInfoEntries = {
   tubes: {
     name: 'Tube & Sprites',
     tags: ['tube', 'sprites'],
-    src: 'videos/tubes.mp4',
+    src: VIDEO_ASSETS_PATH+'videos/tubes.mp4',
     href: '/projects/tubes',
     codeHref:
       'https://github.com/kochegarov-roman/threejs-projects/blob/main/src/entities/tubes/index.js',
@@ -33,7 +35,7 @@ export let projectsInfoEntries: IProjectsInfoEntries = {
   spheres: {
     name: 'Spheres',
     tags: ['SphereGeometry', 'cubeRenderTarget'],
-    src: 'videos/spheres.mp4',
+    src: VIDEO_ASSETS_PATH+'videos/spheres.mp4',
     href: '/projects/spheres',
     codeHref:
       'https://github.com/kochegarov-roman/threejs-projects/blob/main/src/entities/spheres/index.js',
@@ -41,7 +43,7 @@ export let projectsInfoEntries: IProjectsInfoEntries = {
   blocks: {
     name: 'Circles from blocks',
     tags: ['matcap', 'circles', 'sin', 'cos', 'noise'],
-    src: 'videos/blocks.mp4',
+    src: VIDEO_ASSETS_PATH+'videos/blocks.mp4',
     href: '/projects/blocks',
     codeHref:
       'https://github.com/kochegarov-roman/threejs-projects/blob/main/src/entities/blocks/index.js',
@@ -49,7 +51,7 @@ export let projectsInfoEntries: IProjectsInfoEntries = {
   dna: {
     name: 'DNA',
     tags: ['gltf', 'BloomPass', 'EffectComposer'],
-    src: 'videos/dna.mp4',
+    src: VIDEO_ASSETS_PATH+'videos/dna.mp4',
     href: '/projects/dna',
     codeHref:
       'https://github.com/kochegarov-roman/threejs-projects/blob/main/src/entities/dna/index.js',
@@ -57,14 +59,14 @@ export let projectsInfoEntries: IProjectsInfoEntries = {
   cam_move: {
     name: 'Camera Movement',
     tags: ['CatmullRomCurve3'],
-    src: 'videos/cam_move.mp4',
+    src: VIDEO_ASSETS_PATH+'videos/cam_move.mp4',
     isExternal: true,
     href: 'https://kochegarov.pro',
   },
   images: {
     name: 'Floating images',
     tags: ['images', 'img_load'],
-    src: 'videos/images.mp4',
+    src: VIDEO_ASSETS_PATH+'videos/images.mp4',
     isExternal: true,
     href: 'https://kochegarov.pro/projects',
   },
@@ -76,7 +78,7 @@ if (!DeviceUtils.isMobile()) {
     scenes: {
       name: 'Several scenes',
       tags: ['setRenderTarget', 'WheelGesture', 'lethargy'],
-      src: 'videos/scenes.mp4',
+      src: VIDEO_ASSETS_PATH+'videos/scenes.mp4',
       href: '/projects/scenes',
       codeHref:
         'https://github.com/kochegarov-roman/threejs-projects/blob/main/src/entities/scenes/index.js',
