@@ -9,11 +9,8 @@ export function cn(...inputs: ClassValue[]) {
 
 export const clearSceneData = (instance) => {
   window.dispatchEvent(createCustomEvent(PAUSE_SCENE));
-  instance.geometry?.dispose();
-  instance.material?.dispose();
-  instance.clearStats();
-  instance.clearListeners();
   clearScene(instance.scene);
+  instance.clear();
   instance = null;
   const container = document.getElementById('threejs-app-container');
   if (container) container.innerHTML = '';

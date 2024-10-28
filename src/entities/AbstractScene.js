@@ -45,6 +45,13 @@ export default class AbstractScene {
     this.eventManager.clearAllListeners();
   }
 
+  clear() {
+    this.geometry?.dispose();
+    this.material?.dispose();
+    this.clearStats();
+    this.clearListeners();
+  }
+
   buildRender() {
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));

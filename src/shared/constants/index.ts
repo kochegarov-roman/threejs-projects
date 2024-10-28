@@ -1,6 +1,6 @@
 import DeviceUtils from '@/shared/utils/DeviceUtils';
 
-export const BASE_ASSETS_PATH = '/';
+export const BASE_ASSETS_PATH = '/assets/';
 
 interface IProjectsInfoEntries {
   [key: string]: {
