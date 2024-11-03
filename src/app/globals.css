@@ -12,6 +12,10 @@ body {
   }
 }
 
+a:hover, button:hover {
+  cursor: pointer;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
