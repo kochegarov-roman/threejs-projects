@@ -13,7 +13,10 @@ import Link from 'next/link';
 
 export const Projects = () => {
   return (
-    <div className="gap-2 md:gap-4 lg:gap-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <div
+      id="projects"
+      className="gap-2 md:gap-4 lg:gap-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+    >
       {projectsInfo.map((project) => (
         <Card className="relative overflow-hidden" key={project.name}>
           <CardHeader>
@@ -31,20 +34,19 @@ export const Projects = () => {
           </CardContent>
           <CardFooter className="flex justify-between absolute bottom-0 w-[100%]">
             {!project.external && project.codeHref && (
-              <Button variant="ghost">
-                <Link href={project.codeHref ?? '#'} target="_blank">
-                  Code
-                </Link>
-              </Button>
-            )}
-            <Button variant="outline">
-              <Link
-                href={project.href ?? '#'}
-                target={project.isExternal ? '_blank' : '_self'}
-              >
-                Show
+              <Link href={project.codeHref ?? '#'} target="_blank">
+                <Button variant="ghost">Code</Button>
               </Link>
-            </Button>
+            )}
+
+            <Link
+              href={project.href ?? '#'}
+              target={project.isExternal ? '_blank' : '_self'}
+            >
+              <Button variant="outline" className={'js-show-project'}>
+                Show
+              </Button>
+            </Link>
           </CardFooter>
         </Card>
       ))}

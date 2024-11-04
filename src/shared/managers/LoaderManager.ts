@@ -79,7 +79,9 @@ class LoadManager {
 
   private loadGLTF(url: string, name: string): Promise<any> {
     return new Promise((resolve) => {
-      this.DRACOLoader.setDecoderPath('https://www.gstatic.com/draco/v1/decoders/');
+      this.DRACOLoader.setDecoderPath(
+        'https://www.gstatic.com/draco/v1/decoders/',
+      );
       this.GLTFLoader.setDRACOLoader(this.DRACOLoader);
 
       this.GLTFLoader.load(

@@ -1,6 +1,12 @@
 'use client';
 
-import { ReactEventHandler, SyntheticEvent, useEffect, useRef, useState } from 'react';
+import {
+  ReactEventHandler,
+  SyntheticEvent,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { PauseIcon } from '@/shared/ui/pause';
 import { PlayIcon } from '@/shared/ui/play';
 import { Skeleton } from './skeleton';
@@ -15,13 +21,13 @@ interface IVideo {
 }
 
 const Video = ({
-                 src,
-                 poster,
-                 width = '100%',
-                 height = 'auto',
-                 loop,
-                 autoplay,
-               }: IVideo) => {
+  src,
+  poster,
+  width = '100%',
+  height = 'auto',
+  loop,
+  autoplay,
+}: IVideo) => {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(autoplay);
   const [isLoading, setIsLoading] = useState(null);
@@ -47,14 +53,13 @@ const Video = ({
       style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
       className="group transition-all"
     >
-      { isLoading ?
+      {isLoading ? (
         <div className={'flex items-center space-x-4'}>
           <div className="space-y-2">
             <Skeleton className="h-[200px] w-[250px]" />
           </div>
         </div>
-        : null
-      }
+      ) : null}
       <video
         ref={videoRef}
         width={width}
@@ -74,7 +79,7 @@ const Video = ({
 
       <button
         onClick={handlePlayPause}
-        className="absolute top-1/2 transition-all duration-500 opacity-0 group-hover:opacity-100"
+        className="absolute top-1/2 transition-all duration-500 opacity-0 group-hover:opacity-100 js-play-btn"
         style={{ width: '50px', height: '50px' }}
       >
         {isPlaying ? <PauseIcon /> : <PlayIcon />}
