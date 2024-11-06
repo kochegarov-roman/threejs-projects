@@ -20,7 +20,7 @@ export default function ThreeJSContent() {
 
   const startSceneHandler = () => {
     setLoading(false);
-  }
+  };
 
   useEffect(() => {
     const raf = new RAFManager();
