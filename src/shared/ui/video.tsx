@@ -1,12 +1,6 @@
 'use client';
 
-import {
-  ReactEventHandler,
-  SyntheticEvent,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { useRef, useState } from 'react';
 import { PauseIcon } from '@/shared/ui/pause';
 import { PlayIcon } from '@/shared/ui/play';
 import { Skeleton } from './skeleton';
@@ -44,7 +38,7 @@ const Video = ({
     setIsPlaying(!isPlaying);
   };
 
-  const handleLoadedData = (event: SyntheticEvent<HTMLVideoElement>) => {
+  const handleLoadedData = () => {
     setIsLoading(false);
   };
 

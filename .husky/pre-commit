@@ -1,0 +1,4 @@
+npm run format
+npx eslint . --fix
+npm run build
+npm run test:e2e

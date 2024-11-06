@@ -33,7 +33,7 @@ export const Projects = () => {
             />
           </CardContent>
           <CardFooter className="flex justify-between absolute bottom-0 w-[100%]">
-            {!project.external && project.codeHref && (
+            {!project.isExternal && project.codeHref && (
               <Link href={project.codeHref ?? '#'} target="_blank">
                 <Button variant="ghost">Code</Button>
               </Link>

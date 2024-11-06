@@ -33,7 +33,7 @@ jobs:
       - name: Run Playwright tests
         run: npx playwright test
         env:
-          TEST_ENV_BASE_URL: https://toybots.online
+          TEST_ENV_BASE_URL: https://projects.kochegarov.pro
       - uses: actions/upload-artifact@v3
         if: always()
         with:
