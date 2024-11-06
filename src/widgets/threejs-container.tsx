@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { RAFManager } from '@/shared/managers/RAFManager';
 import { clearSceneData } from '@/shared/utils/utils';
 import { FullPageSpinner } from '@/shared/ui/full-page-spinner';
+import { START_SCENE } from '@/shared/constants';
 
 const loadClass = async (className) => {
   try {
@@ -17,6 +18,10 @@ export default function ThreeJSContent() {
   const lastPart = pathname.substring(pathname.lastIndexOf('/') + 1);
   const [isLoading, setLoading] = useState(true);
 
+  const startSceneHandler = () => {
+    setLoading(false);
+  }
+
   useEffect(() => {
     const raf = new RAFManager();
     let instance;
@@ -24,10 +29,11 @@ export default function ThreeJSContent() {
       instance = new SceneClass.default({
         container: document.getElementById('threejs-app-container'),
       });
-      setLoading(false);
+      window.addEventListener(START_SCENE, startSceneHandler);
     });
 
     return () => {
+      window.removeEventListener(START_SCENE, startSceneHandler);
       raf.pause();
       if (instance) clearSceneData(instance);
     };
