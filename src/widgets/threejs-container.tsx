@@ -25,11 +25,11 @@ export default function ThreeJSContent() {
   useEffect(() => {
     const raf = new RAFManager();
     let instance;
+    window.addEventListener(START_SCENE, startSceneHandler);
     loadClass(lastPart).then((SceneClass) => {
       instance = new SceneClass.default({
         container: document.getElementById('threejs-app-container'),
       });
-      window.addEventListener(START_SCENE, startSceneHandler);
     });
 
     return () => {
