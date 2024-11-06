@@ -48,6 +48,14 @@ export let projectsInfoEntries: IProjectsInfoEntries = {
     codeHref:
       'https://github.com/kochegarov-roman/threejs-projects/blob/main/src/entities/blocks/index.js',
   },
+  brain: {
+    name: 'Brain',
+    tags: ['gltf'],
+    src: VIDEO_ASSETS_PATH + 'videos/brain.mp4',
+    href: '/projects/brain',
+    codeHref:
+      'https://github.com/kochegarov-roman/threejs-projects/blob/main/src/entities/brain/index.js',
+  },
   dna: {
     name: 'DNA',
     tags: ['gltf', 'BloomPass', 'EffectComposer'],
@@ -68,7 +76,7 @@ export let projectsInfoEntries: IProjectsInfoEntries = {
     tags: ['images', 'img_load'],
     src: VIDEO_ASSETS_PATH + 'videos/images.mp4',
     isExternal: true,
-    href: 'https://kochegarov.pro/projects',
+    href: 'https://kochegarov.pro',
   },
 };
 

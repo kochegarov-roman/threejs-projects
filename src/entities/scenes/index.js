@@ -8,13 +8,14 @@ import AbstractScene from '@/entities/AbstractScene';
 import { RAF, START_SCENE } from '@/shared/constants';
 import { LoaderManager } from '@/shared/managers/LoaderManager';
 import { createCustomEvent } from '@/shared/utils/ThreejsUtils';
+import { BASE_ASSETS_PATH } from '../../shared/constants';
 
-const sec1 = '/scenes/sec1.png';
-const sec2 = '/scenes/sec2.png';
-const sec3 = '/scenes/sec3.png';
-const bg1 = '/scenes/bg1.jpg';
-const bg2 = '/scenes/bg2.jpg';
-const bg3 = '/scenes/bg3.jpg';
+const sec1 = `${BASE_ASSETS_PATH}/scenes/sec1.png`;
+const sec2 = `${BASE_ASSETS_PATH}/scenes/sec2.png`;
+const sec3 = `${BASE_ASSETS_PATH}/scenes/sec3.png`;
+const bg1 = `${BASE_ASSETS_PATH}/scenes/bg1.jpg`;
+const bg2 = `${BASE_ASSETS_PATH}/scenes/bg2.jpg`;
+const bg3 = `${BASE_ASSETS_PATH}/scenes/bg3.jpg`;
 
 const SCENES_LENGTH = 3;
 
