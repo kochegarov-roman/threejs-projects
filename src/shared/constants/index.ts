@@ -78,13 +78,21 @@ export let projectsInfoEntries: IProjectsInfoEntries = {
     isExternal: true,
     href: 'https://kochegarov.pro',
   },
+  scenes: {
+    name: 'Many scenes',
+    tags: ['setRenderTarget', 'WheelGesture', 'lethargy'],
+    src: VIDEO_ASSETS_PATH + 'videos/scenes.mp4',
+    href: '/projects/scenes',
+    codeHref:
+      'https://github.com/kochegarov-roman/threejs-projects/blob/main/src/entities/scenes/index.js',
+  },
 };
 
 if (!DeviceUtils.isMobile()) {
   projectsInfoEntries = {
     ...projectsInfoEntries,
     scenes: {
-      name: 'Several scenes',
+      name: 'Many scenes',
       tags: ['setRenderTarget', 'WheelGesture', 'lethargy'],
       src: VIDEO_ASSETS_PATH + 'videos/scenes.mp4',
       href: '/projects/scenes',
