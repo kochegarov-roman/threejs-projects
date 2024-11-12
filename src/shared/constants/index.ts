@@ -56,6 +56,14 @@ export let projectsInfoEntries: IProjectsInfoEntries = {
     codeHref:
       'https://github.com/kochegarov-roman/threejs-projects/blob/main/src/entities/brain/index.js',
   },
+  custom: {
+    name: 'Custom',
+    tags: ['gltf'],
+    src: VIDEO_ASSETS_PATH + 'videos/custom.mp4',
+    href: '/projects/custom',
+    codeHref:
+      'https://github.com/kochegarov-roman/threejs-projects/blob/main/src/entities/custom/index.js',
+  },
   dna: {
     name: 'DNA',
     tags: ['gltf', 'BloomPass', 'EffectComposer'],
