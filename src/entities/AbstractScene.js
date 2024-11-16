@@ -53,10 +53,11 @@ export default class AbstractScene {
   }
 
   buildRender() {
-    this.renderer = new THREE.WebGLRenderer({ antialias: true });
+    this.renderer = new THREE.WebGLRenderer({ antialias: false });
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer.setSize(this.width, this.height);
     this.renderer.setClearColor(0x030303, 1);
+    this.renderer.shadowMap.enabled = false;
     this.renderer.physicallyCorrectLights = true;
     this.options.container.appendChild(this.renderer.domElement);
   }
