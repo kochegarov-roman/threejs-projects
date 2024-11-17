@@ -6,7 +6,7 @@ import AbstractScene from '../AbstractScene';
 import { RAF, START_SCENE } from '../../shared/constants';
 import { createCustomEvent } from '../../shared/utils/ThreejsUtils';
 
-export default class Custom extends AbstractScene {
+export default class CustomSphere extends AbstractScene {
   constructor(options) {
     super(options);
     if (options.container.hasChildNodes()) return;
@@ -23,6 +23,7 @@ export default class Custom extends AbstractScene {
     super.buildStats();
     super.buildScene();
     super.buildRender();
+    this.renderer.setClearColor(0x101214);
 
     this.buildCamera();
     super.buildControls();
@@ -55,6 +56,7 @@ export default class Custom extends AbstractScene {
       side: THREE.DoubleSide,
       uniforms: {
         time: { type: 'f', value: 0 },
+        uRadius: { type: 'f', value: 0.5 },
         mousePos: { type: 'v3', value: new THREE.Vector3(0, 0, 0) },
         pixels: {
           type: 'v2',
@@ -69,7 +71,9 @@ export default class Custom extends AbstractScene {
       fragmentShader: fragment,
     });
 
-    this.geometry = new THREE.PlaneGeometry(2, 2, 30);
+    //this.geometry = new THREE.IcosahedronGeometry(1, 5);
+    this.geometry = new THREE.PlaneGeometry(2, 2);
+    // this.geometry = new THREE.SphereGeometry(2);
     this.plane = new THREE.Mesh(this.geometry, this.material);
     this.scene.add(this.plane);
   }
@@ -79,7 +83,7 @@ export default class Custom extends AbstractScene {
     this.stats.begin();
     if (this.controls) this.controls.update(); // for damping
 
-    this.material.uniforms.time.value = now / 2000;
+    this.material.uniforms.time.value = now / 1000;
 
     this.renderer.render(this.scene, this.camera);
     this.stats.end();
